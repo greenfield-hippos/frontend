@@ -1,35 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Signin from "./Signin";
+import Signup from "./Signup";
+import './Login.css'
 
-function Login() {
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+type Props = {
+    setUserLoggedIn: (a: boolean) => void;
+}
 
 
+const Login: React.FC<Props> = ({
+    setUserLoggedIn
+}) => {
+    const [signinOrSignup, setSigninOrSignup] = useState<string>("Signin");
+
+    useEffect(() => {
+        
+    }, [signinOrSignup])
 
     return (
         <>
-            <div className="login-container">
-                <h2>Login</h2>
-                <form>
-                    <div className="username-box">
-                        <input
-                            value={userName}
-                            placeholder="Enter your user name"
-                            onChange={(e) => setUserName(() => e.target.value)}
-                            className="username-input"
-                        />
-                    </div>
-                    <div className="password-box">
-                        <input 
-                            value={password}
-                            placeholder="Password"
-                            onChange={(e) => setPassword(() => e.target.value)}
-                            className="password-input"
-                        />
-                    </div>
-                </form>
-
-            </div>
+            {(signinOrSignup === "Signin") 
+                ? <Signin setSigninOrSignup={setSigninOrSignup} setUserLoggedIn={setUserLoggedIn} /> 
+                : <Signup setSigninOrSignup={setSigninOrSignup} setUserLoggedIn={setUserLoggedIn}/>
+            }
         </>
     )
 }
