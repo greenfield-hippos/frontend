@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Login from './components/login';
-import MainDisplay from './components/maindisplay';
+import Login from './components/Login';
+import MainDisplay from './components/MainDisplay';
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     if (userLoggedIn) {
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       {(!userLoggedIn) 
-      ? <Login />
+      ? <Login setUserLoggedIn={setUserLoggedIn} />
       : <MainDisplay />
       }
     </>
