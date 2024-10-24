@@ -24,14 +24,19 @@ const Signin: React.FC<Props> = ({
             body: JSON.stringify({username: username, password: password}),
             });
             if (response.ok) {
-                console.log('User Logged in')
-                setUserLoggedIn(true);
+                const { authenticationSuccessful } = await response.json();
+                if (authenticationSuccessful)  {
+                    setUserLoggedIn(true)
+                } else {
+                    alert('Incorrect password')
+                }
             } else {
                 console.error('Error logging in')
             }
         } catch (error) {
             console.error('Error:', error);
         }
+
     }
     
 
