@@ -33,7 +33,7 @@ const Signup: React.FC<Props> = ({
             } catch (error) {
                 console.error('Error:', error);
             }
-            setSigninOrSignup('Singup');
+            setSigninOrSignup('Signin');
         }
     }
 

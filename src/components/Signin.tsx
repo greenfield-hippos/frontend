@@ -59,6 +59,7 @@ const Signin: React.FC<Props> = ({
                             placeholder="Password"
                             onChange={(e) => setPassword(() => e.target.value)}
                             className="password-input"
+                            type="password"
                         />
                     </div>
                     <button type="button" onClick={() => handleSigninSubmit(userName, password)}>Sign in</button>
