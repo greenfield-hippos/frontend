@@ -21,7 +21,7 @@ const Login: React.FC<Props> = ({
         <>
             {(signinOrSignup === "Signin") 
                 ? <Signin setSigninOrSignup={setSigninOrSignup} setUserLoggedIn={setUserLoggedIn} /> 
-                : <Signup setSigninOrSignup={setSigninOrSignup} setUserLoggedIn={setUserLoggedIn}/>
+                : <Signup setSigninOrSignup={setSigninOrSignup} />
             }
         </>
     )
