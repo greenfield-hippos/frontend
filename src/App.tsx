@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Login from './components/Login';
-import MainDisplay from './components/MainDisplay';
+import MainDisplay from './components/maindisplay';
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);

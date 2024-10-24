@@ -3,7 +3,7 @@ function MainDisplay () {
     return (
         <>
             <div>
-                This is the dummny main display
+                This is the dummy main display
             </div>
         </>
     )

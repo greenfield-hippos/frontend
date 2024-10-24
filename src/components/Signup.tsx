@@ -3,24 +3,14 @@ const apiUrl: string = import.meta.env.VITE_API_URL;
 
 type Props = {
     setSigninOrSignup: (a: string) => void;
-    setUserLoggedIn: (a: boolean) => void;
    }
 
 const Signup: React.FC<Props> = ({
     setSigninOrSignup,
-    setUserLoggedIn
 }) => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    // useEffect(() => {
-    //     if (password !== confirmPassword) {
-    //         alert("Passwords don't match!");
-    //     } else {
-    //         alert("Passwords match!");
-    //     }
-    // }, [confirmPassword]);
 
     const handleSignupSubmit = async (pass: string, confPass: string) => {
         const signupUrl = apiUrl + "signup";
@@ -43,32 +33,9 @@ const Signup: React.FC<Props> = ({
             } catch (error) {
                 console.error('Error:', error);
             }
-            setUserLoggedIn(true);
+            setSigninOrSignup('Singup');
         }
     }
-
-    // const handleSubmit = async (event) => {
-    //     const postUrl = import.meta.env.VITE_API_URL + 'post-note';
-    //     event.preventDefault();
-    //     try {
-    //       const response = await fetch(postUrl, {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({username: input, password: password}),
-    //       });
-    //       if (response.ok) {
-    //         console.log('Note created')
-    //       } else {
-    //         console.error('Error creating note')
-    //       }
-    //     } catch (error) {
-    //       console.error('Error:', error);
-    //     }
-    //     setAddModalOpen(false);
-    //     getNoteData();
-    //   }
 
     return (
         <>
