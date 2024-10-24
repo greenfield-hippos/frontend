@@ -14,12 +14,14 @@ const ConversationList = (
     // })
 
     return (
-        <>
-            <Search />
-            <p>Conversation 1</p>
-            <p>Conversation 2</p>
-            <p>Conversation 3</p>
-            <p>Conversation 4</p>
+        <>  
+            <div className="conversation-list-tab">
+                <Search />
+                <p>Conversation 1</p>
+                <p>Conversation 2</p>
+                <p>Conversation 3</p>
+                <p>Conversation 4</p>
+            </div>
         </>
     )
 }

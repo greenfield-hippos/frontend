@@ -2,8 +2,10 @@ const Search: React.FC = () => {
 
     return (
         <>
-            <p>Search</p>
-            <input></input>
+            <div className="search-list">
+                <p>Search</p>
+                <input></input>
+            </div>
         </>
     )
 
