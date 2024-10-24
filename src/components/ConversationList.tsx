@@ -16,7 +16,10 @@ const ConversationList = (
     return (
         <>
             <Search />
-            <p>Conversations</p>
+            <p>Conversation 1</p>
+            <p>Conversation 2</p>
+            <p>Conversation 3</p>
+            <p>Conversation 4</p>
         </>
     )
 }
