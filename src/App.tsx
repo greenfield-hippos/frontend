@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Login from './components/Login';
-import Main from './components/Main';
+import Chat from './components/Chat';
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
@@ -19,10 +19,10 @@ function App() {
     <>
       {(!userLoggedIn) 
       ? <Login setUserLoggedIn={setUserLoggedIn} />
-      : <Main />
+      : <Chat />
       }
     </>
   )
 }
 
-export default App
+export default App;
