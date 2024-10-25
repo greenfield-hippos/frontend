@@ -4,6 +4,7 @@ import FavoriteList from "./FavoriteList";
 
 interface SidebarContentListProps {
     messages:  object[];
+    setUser_id: (a:string | number) => void;
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = () => {
@@ -26,7 +27,7 @@ const SidebarContentList: React.FC<SidebarContentListProps> = () => {
                 Favorites
             </button>
             {(selectedContentType === "conversation")
-            ? <ConversationList /> 
+            ? <ConversationList setUser_id={setUser_id} /> 
             : <FavoriteList />
             }
         </>

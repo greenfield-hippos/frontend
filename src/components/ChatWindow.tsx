@@ -11,7 +11,7 @@ const ChatWindow = () => {
     return (
         <>
             <div className="chat-window">
-                <MessageList />
+                <MessageList newQues={newQues} newAns={newAns}/>
                 <SendMessage setNewQues={setNewQues} setNewAns={setNewAns} />
             </div>
         </>
@@ -20,5 +20,3 @@ const ChatWindow = () => {
 }
 
 export default ChatWindow;
-
-// newQues={newQues} newAns={newAns}
