@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# Greenfield Project Frontend Repository
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
 
-Currently, two official plugins are available:
+To help software engineering students improve their skills and knowledge
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Contributors
 
-## Expanding the ESLint configuration
+- Laurence (CC36)
+- Vicente (CC36)
+- Jason (CC36)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+- React
+- TypeScript
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Setup
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Clone the repo locally using your preferred method (HTTPS, SSH, etc.)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. On your local machine, open command line, go to the root directly of the repo, and run `npm install` to install all dependencies
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. Create a `.env` file with a line that says `VITE_API_URL="http://localhost:8080/"`. This is to make your local frontend able to communicate with your local backend
+
+4. Finally, run `npm start` to start the React app and click the `http://localhost:5173/` link that appears in your terminal to view it in your browser
