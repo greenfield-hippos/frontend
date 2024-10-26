@@ -1,4 +1,15 @@
-const MessageList = () => {
+// import { useEffect } from "react";
+
+// type Props = {
+//     newQues: string;
+//     newAns: string;
+//    }
+
+// const MessageList: React.FC<Props> = ({
+//     newQues,
+//     newAns
+// }) 
+const MessageList = () =>  {
 
     return (
         <>

@@ -7,20 +7,20 @@ const Content: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     
     useEffect(() => {
-        setIsLoading(true);
-        fetchMessagesOnTheServer();
+        // setIsLoading(true);
+        // fetchMessagesOnTheServer();
     },[]); 
 
     useEffect(() => {
         <p>Is Loading</p>
     },[isLoading]);
 
-    const fetchMessagesOnTheServer = async () => {
-        const messagesOnTheServer = await fetch ("xx");
-        const messagesOnTheServerParsed = await messagesOnTheServer.json();
-        setMessages(messagesOnTheServerParsed);
-        setIsLoading(false);
-    }
+    // const fetchMessagesOnTheServer = async () => {
+        // const messagesOnTheServer = await fetch ("xx");
+        // const messagesOnTheServerParsed = await messagesOnTheServer.json();
+        // setMessages(messagesOnTheServerParsed);
+    //     setIsLoading(false);
+    // }
 
     
 
