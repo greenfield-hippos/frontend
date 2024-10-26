@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import './Login.css'
+import { User } from "../types";
 
-type Props = {
+type LoginProps = {
     setUserLoggedIn: (a: boolean) => void;
+    setUser: (user: User) =>  void;
 }
 
 
-const Login: React.FC<Props> = ({
-    setUserLoggedIn
+const Login: React.FC<LoginProps> = ({
+    setUserLoggedIn,
+    setUser
 }) => {
     const [signinOrSignup, setSigninOrSignup] = useState<string>("Signin");
 
@@ -20,7 +23,11 @@ const Login: React.FC<Props> = ({
     return (
         <>
             {(signinOrSignup === "Signin") 
-                ? <Signin setSigninOrSignup={setSigninOrSignup} setUserLoggedIn={setUserLoggedIn} /> 
+                ? <Signin 
+                    setSigninOrSignup={setSigninOrSignup} 
+                    setUserLoggedIn={setUserLoggedIn} 
+                    setUser={setUser}
+                /> 
                 : <Signup setSigninOrSignup={setSigninOrSignup} />
             }
         </>

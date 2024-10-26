@@ -1,10 +1,5 @@
 import Search from "./Search";
-
-export interface Conversation {
-    id: string;
-    title: string | null;
-    updated_at: Date;
-}
+import { Conversation } from "../types";
 
 interface ConversationListProps {
     conversations: Conversation[];

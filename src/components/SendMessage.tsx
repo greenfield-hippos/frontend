@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Message } from './ChatWindow';
+import { Message, User } from '../types';
 
 interface SendMessageProps {
-    conversationId: string;
+    conversationId: string | null | undefined;
     onNewMessage: (message: Message) => void;
+    user: User;
 }
 
-const SendMessage: React.FC<SendMessageProps> = ({ conversationId, onNewMessage }) => {
+const SendMessage: React.FC<SendMessageProps> = ({ 
+    conversationId,
+    onNewMessage,
+    user,
+ }) => {
     const [userMessage, setUserMessage] = useState<string>("");
     const [isSending, setIsSending] = useState<boolean>(false);
 
@@ -16,12 +21,15 @@ const SendMessage: React.FC<SendMessageProps> = ({ conversationId, onNewMessage 
         if (!userMessage.trim()) return; 
 
         const newMessage = {
-            chat_user_id: "1", // We need the result user ID
+            chat_user_id: user.id,
             id: `${Date.now()}`, // Generate a unique ID
             conversation_id: conversationId,
             author: 'user',
             content: userMessage,
+            is_favorite: false,
             timestamp: new Date(),
+
+
         };
         onNewMessage(newMessage); 
         setIsSending(true);
@@ -31,13 +39,13 @@ const SendMessage: React.FC<SendMessageProps> = ({ conversationId, onNewMessage 
             const response = await fetch(apiUrl+"api/chat", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: "1", conversation_id: conversationId, message: userMessage }),
+                body: JSON.stringify({ user_id: user.id, conversation_id: conversationId, message: userMessage }),
             });
             const data = await response.json();
 
             const assistantMessage : Message = {
                 id: `${Date.now() + 1}`,
-                chat_user_id: "1",
+                chat_user_id: user.id,
                 conversation_id: conversationId,
                 author: 'assistant',
                 content: data.response, 

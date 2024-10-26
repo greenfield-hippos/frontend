@@ -1,37 +1,31 @@
-import { Conversation } from "./ConversationList";
 import MessageList from "./MessageList";
 import SendMessage from "./SendMessage";
-
-export interface Message {
-    id: string;
-    conversation_id: string;
-    author: string;
-    chat_user_id: string;
-    content: string;
-    is_favorite?: boolean;
-    timestamp: Date;
-}
+import { Message, User } from "../types";
+import { Conversation } from "../types";
  
 interface ChatWindowProps {
-    conversation: Conversation;
+    conversation: Conversation ;
     messages: Message[];
     onUpdateMessage: (message: Message) => void;
+    user: User;
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({
     conversation,
     messages,
-    onUpdateMessage
+    onUpdateMessage,
+    user,
 }) => {
 
     return (
         <>
             <div className="chat-window">
-                <h2>{conversation.title} || "Untitled Conversation"</h2>
+                <h2>{conversation.title || "Untitled Conversation"}</h2>
                 <MessageList messages={messages}/>
                 <SendMessage 
                     conversationId={conversation.id}
                     onNewMessage={onUpdateMessage}
+                    user={user}
                 />
             </div>
         </>
