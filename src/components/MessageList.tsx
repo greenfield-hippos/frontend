@@ -1,28 +1,19 @@
-// import { useEffect } from "react";
+import { Message } from "./ChatWindow";
 
-// type Props = {
-//     newQues: string;
-//     newAns: string;
-//    }
-
-// const MessageList: React.FC<Props> = ({
-//     newQues,
-//     newAns
-// }) 
-const MessageList = () =>  {
-
-    return (
-        <>
-            <div className="message-list">
-                <p>Messages</p>
-                <p>Messages</p>
-                <p>Messages</p>
-                <p>Messages</p>
-                <p>Messages</p>
-            </div>
-        </>
-    )
-
+interface MessageListProps {
+    messages: Message[];
 }
+
+const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+    return (
+        <div className="message-list">
+            {messages.map((message) => (
+                <div key={message.id} className={`message ${message.author}`}>
+                    <p>{message.content}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 export default MessageList;

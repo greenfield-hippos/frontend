@@ -3,8 +3,7 @@ import Search from "./Search";
 export interface Conversation {
     id: string;
     title: string | null;
-    lastMessage: string;    // A short preview of the last message in the conversation. Not sure is needed
-    lastActive: Date;
+    updated_at: Date;
 }
 
 interface ConversationListProps {
@@ -35,8 +34,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
                             onClick={() => onSelectConversation(conversation.id)}
                         >
                         <h3>{conversation.title || "Untitled Conversation"}</h3>
-                        <p className="conversation-preview">{conversation.lastMessage}</p>
-                        <p className="conversation-time">{conversation.lastActive.toLocaleString()}</p>
+                        <p className="conversation-time">{conversation.updated_at.toLocaleString()}</p>
                     </div>
                     ))
                 )}
