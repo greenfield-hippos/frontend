@@ -14,7 +14,9 @@ const Content: React.FC = () => {
     useEffect(() => {
         setIsLoading(true);
         fetchConversations();
-    },[]); 
+    },[]);
+    
+    
     
     const fetchConversations = async () => {
         try {

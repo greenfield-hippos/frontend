@@ -18,6 +18,7 @@ const Signin: React.FC<Props> = ({
         try {
             const response = await fetch(signinUrl, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                'Content-Type': 'application/json'
             },
