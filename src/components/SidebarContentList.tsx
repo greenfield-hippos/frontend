@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react";
 import ConversationList from "./ConversationList";
-import FavoriteList from "./FavoriteList";
+import { Conversation } from "./ConversationList";
 
 interface SidebarContentListProps {
-    messages:  object[];
+    conversations: Conversation[];
+    onSelectConversation: (id: string) => void;
 }
 
-const SidebarContentList: React.FC<SidebarContentListProps> = () => {
-    const [selectedContentType, setSelectedContentType] = useState("conversation");
+const SidebarContentList: React.FC<SidebarContentListProps> = ({
+    conversations,
+    onSelectConversation,
+}) => {
 
-    useEffect(() => {
-
-    }, [selectedContentType]);
-    
     return (
         <>  
-            <button
-                onClick={() => setSelectedContentType("conversation")}
-            >
-                Conversations
-            </button>
-            <button
-                onClick={() => setSelectedContentType("favourite")}
-            >
-                Favorites
-            </button>
-            {(selectedContentType === "conversation")
-            ? <ConversationList /> 
-            : <FavoriteList />
-            }
+            <div className="sidebar-content">
+                <ConversationList 
+                    conversations={conversations}
+                    onSelectConversation={onSelectConversation}
+                />              
+            </div>
         </>
     )
 }
