@@ -16,7 +16,6 @@ To help software engineering students improve their skills and knowledge
 - TypeScript
 
 ## Setup
-### Express Server
 
 1. Clone the repo locally using your preferred method (HTTPS, SSH, etc.)
 
