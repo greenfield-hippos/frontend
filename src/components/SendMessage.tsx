@@ -24,7 +24,7 @@ const SendMessage: React.FC<Props> = ({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({message: userMessage}),
+                body: JSON.stringify({message: userMessage, user_id: 1}),
             });
             if (response.ok) {
                 const ans: {response: string, conversation_id: string | number} = await response.json();

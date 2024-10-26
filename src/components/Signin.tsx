@@ -18,15 +18,16 @@ const Signin: React.FC<Props> = ({
         try {
             const response = await fetch(signinUrl, {
             method: 'POST',
+            credentials: 'include',
             headers: {
-               'Content-Type': 'application/json'
+               'Content-Type': 'application/json',
             },
             body: JSON.stringify({username: username, password: password}),
             });
             if (response.ok) {
                 const { authenticationSuccessful } = await response.json();
                 if (authenticationSuccessful)  {
-                    setUserLoggedIn(true)
+                    setUserLoggedIn(true);
                 } else {
                     alert('Incorrect password')
                 }

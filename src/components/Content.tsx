@@ -6,6 +6,7 @@ const Content: React.FC = () => {
     const [messages, setMessages] = useState<object[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [user_id, setUser_id] = useState<number>(0);
+    const [selectedConversation_id, setSelectedConversation_id] = useState<number>(0);
     
     useEffect(() => {
         setIsLoading(true);
@@ -32,8 +33,9 @@ const Content: React.FC = () => {
                 <SidebarContentList 
                     messages={messages}
                     setUser_id={setUser_id}
+                    setSelectedConversation_id={setSelectedConversation_id}
                 />
-                <ChatWindow user_id={user_id}/>
+                <ChatWindow user_id={user_id} selectedConversation_id={selectedConversation_id}/>
             </div>
         </>
     )

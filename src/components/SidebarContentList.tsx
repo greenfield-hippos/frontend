@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import ConversationList from "./ConversationList";
 import FavoriteList from "./FavoriteList";
 
-interface SidebarContentListProps {
-    messages:  object[];
+interface Props {
     setUser_id: (a:string | number) => void;
+    setSelectedConversation_id: (a:string | number) => void;
 }
 
-const SidebarContentList: React.FC<SidebarContentListProps> = () => {
+const SidebarContentList: React.FC<Props> = ({
+    setUser_id,
+    setSelectedConversation_id
+}) => {
     const [selectedContentType, setSelectedContentType] = useState("conversation");
-
-    useEffect(() => {
-
-    }, [selectedContentType]);
     
     return (
         <>  
@@ -27,7 +26,7 @@ const SidebarContentList: React.FC<SidebarContentListProps> = () => {
                 Favorites
             </button>
             {(selectedContentType === "conversation")
-            ? <ConversationList setUser_id={setUser_id} /> 
+            ? <ConversationList setUser_id={setUser_id} setSelectedConversation_id={setSelectedConversation_id}/> 
             : <FavoriteList />
             }
         </>
