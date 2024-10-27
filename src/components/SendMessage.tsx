@@ -46,7 +46,6 @@ const SendMessage: React.FC<SendMessageProps> = ({
                 body: JSON.stringify({ user_id: user.id, conversation_id: conversationId, message: userMessage }),
             });
             const data = await response.json();
-            console.log(data.conversation_id);
             const assistantMessage : Message = {
                 id: `${Date.now() + 1}`,
                 chat_user_id: user.id,

@@ -26,18 +26,15 @@ const Content: React.FC<ContentProps> = ({ user }) => {
         try {
             const response = await fetch (apiUrl + "users/" + user.id + "/conversations");
             const data = await response.json();
-            console.log(data);
             setConversations(data);
             setIsLoading(false);
             if (conversations.length > 0) {
-                // const latestConversation = conversations[0];
-                // setSelectedConversation(latestConversation);
-                // fetchMessagesForConversation(latestConversation.id)
+                // do nothing
             } else {
                 initializeNewConversation();
             }
         } catch (error) {
-            console.error("Error fetchin conversations: ", error);
+            console.error("Error fetching conversations: ", error);
         }
     }
     

@@ -10,12 +10,6 @@ const ConversationList: React.FC<ConversationListProps> = ({
     conversations,
     onSelectConversation,
 }) => {
-
-    
-    // const filteredConversations = conversations(conversation => {
-    //     return (conversation.content || "").toLowerCase().includes(searchQuery.toLowerCase());
-    // })
-
     return (
         <>  
             <div className="conversation-list-tab">
