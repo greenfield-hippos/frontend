@@ -64,12 +64,21 @@ const SendMessage: React.FC<SendMessageProps> = ({
         }
     };
 
+    // Handle enter press in textarea
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); // Prevents a newline from being added
+            handleSendMessage();
+        }
+    };
+
     return (
         <div className="send-message">
             <textarea
                 placeholder="Type your message..."
                 value={userMessage}
                 onChange={(e) => setUserMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
                 disabled={isSending}
             />
             <button onClick={handleSendMessage} disabled={isSending || !userMessage.trim()}>
