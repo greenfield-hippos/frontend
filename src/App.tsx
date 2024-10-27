@@ -26,13 +26,16 @@ function App() {
     if (response.status == 500) {
       alert("Logout failed");
     }
+
+    setUserLoggedIn(false);
+    setUser(null);
   }
 
   return (
     <>
       {(!userLoggedIn || !user) 
       ? <Login setUserLoggedIn={setUserLoggedIn} setUser={setUser}/>
-      : <Chat user={user}/>
+      : <Chat user={user} handleLogOut={handleLogOut}/>
       }
     </>
   )
