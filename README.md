@@ -1,5 +1,7 @@
 # Greenfield Project Frontend Repository
 
+https://greenfield-hippos-frontend.onrender.com/
+
 ## Purpose
 
 To help software engineering students improve their skills and knowledge
@@ -24,3 +26,29 @@ To help software engineering students improve their skills and knowledge
 3. Create a `.env` file with a line that says `VITE_API_URL="http://localhost:8080/"`. This is to make your local frontend able to communicate with your local backend
 
 4. Finally, run `npm start` to start the React app and click the `http://localhost:5173/` link that appears in your terminal to view it in your browser
+
+## Application Tour
+
+### Sign Up Screen
+
+![alt text](image-1.png)
+
+### Log In Screen
+
+![alt text](image-2.png)
+
+### New User Login
+
+![alt text](image-3.png)
+
+### Starting Your First Conversation
+
+![alt text](image-4.png)
+
+### Making a New Conversation
+
+![alt text](image-5.png)
+
+### Continuing an Existing Conversation
+
+![alt text](image-6.png)
