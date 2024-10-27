@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Login from './components/Login';
 import Chat from './components/Chat';
+import { User } from './types';
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     if (userLoggedIn) {
@@ -17,9 +19,9 @@ function App() {
 
   return (
     <>
-      {(!userLoggedIn) 
-      ? <Login setUserLoggedIn={setUserLoggedIn} />
-      : <Chat />
+      {(!userLoggedIn || !user) 
+      ? <Login setUserLoggedIn={setUserLoggedIn} setUser={setUser}/>
+      : <Chat user={user}/>
       }
     </>
   )

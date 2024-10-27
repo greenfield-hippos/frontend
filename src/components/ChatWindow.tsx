@@ -1,18 +1,32 @@
-import { useState } from "react";
 import MessageList from "./MessageList";
 import SendMessage from "./SendMessage";
+import { Message, User } from "../types";
+import { Conversation } from "../types";
+ 
+interface ChatWindowProps {
+    conversation: Conversation ;
+    messages: Message[];
+    onUpdateMessage: (message: Message) => void;
+    user: User;
+}
 
-const ChatWindow = () => {
+const ChatWindow: React.FC<ChatWindowProps> = ({
+    conversation,
+    messages,
+    onUpdateMessage,
+    user,
+}) => {
 
-    const [newQues, setNewQues] = useState("");
-    const [newAns, setNewAns] = useState("");
-
-    console.log(newAns, newQues);
     return (
         <>
             <div className="chat-window">
-                <MessageList />
-                <SendMessage setNewQues={setNewQues} setNewAns={setNewAns} />
+                <h2>{conversation.title || "Untitled Conversation"}</h2>
+                <MessageList messages={messages}/>
+                <SendMessage 
+                    conversationId={conversation.id}
+                    onNewMessage={onUpdateMessage}
+                    user={user}
+                />
             </div>
         </>
     )
@@ -21,4 +35,3 @@ const ChatWindow = () => {
 
 export default ChatWindow;
 
-// newQues={newQues} newAns={newAns}

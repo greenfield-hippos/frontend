@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { User } from "../types";
 const apiUrl: string = import.meta.env.VITE_API_URL;
 
 type Props = {
    setSigninOrSignup: (a: string) => void;
    setUserLoggedIn: (a: boolean) => void;
+   setUser: (user: User) => void;
   }
 
 const Signin: React.FC<Props> = ({
     setSigninOrSignup,
-    setUserLoggedIn
+    setUserLoggedIn,
+    setUser
 }) => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState(""); 
@@ -25,9 +28,10 @@ const Signin: React.FC<Props> = ({
             body: JSON.stringify({username: username, password: password}),
             });
             if (response.ok) {
-                const { authenticationSuccessful } = await response.json();
+                const { authenticationSuccessful, chatUser } = await response.json();
                 if (authenticationSuccessful)  {
                     setUserLoggedIn(true)
+                    setUser(chatUser);
                 } else {
                     alert('Incorrect password')
                 }

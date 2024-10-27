@@ -1,54 +1,77 @@
-import { useState } from "react";
-const apiUrl: string = import.meta.env.VITE_API_URL;
+import React, { useState } from 'react';
+import { Message, User } from '../types';
 
-type Props = {
-    setNewQues: (a: string) => void;
-    setNewAns: (a: string) => void;
-   }
+interface SendMessageProps {
+    conversationId: string | null | undefined;
+    onNewMessage: (message: Message) => void;
+    user: User;
+}
 
-const SendMessage: React.FC<Props> = ({
-    setNewQues,
-    setNewAns
-}) =>  {
+const SendMessage: React.FC<SendMessageProps> = ({ 
+    conversationId,
+    onNewMessage,
+    user,
+ }) => {
+    const [userMessage, setUserMessage] = useState<string>("");
+    const [isSending, setIsSending] = useState<boolean>(false);
 
-    const [userMessage, setUserMessage] = useState("");
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-    const handleMessageSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const sendMessageUrl = apiUrl + 'api/chat';
-        setNewQues(userMessage);
+    const handleSendMessage = async () => {
+        if (!userMessage.trim()) return; 
+
+        const newMessage = {
+            chat_user_id: user.id,
+            id: `${Date.now()}`, // Generate a unique ID
+            conversation_id: conversationId,
+            author: 'user',
+            content: userMessage,
+            is_favorite: false,
+            timestamp: new Date(),
+
+
+        };
+        onNewMessage(newMessage); 
+        setIsSending(true);
+        setUserMessage(''); 
+
         try {
-            const response = await fetch(sendMessageUrl, {
+            const response = await fetch(apiUrl+"api/chat", {
                 method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({message: userMessage, user_id: 1}),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: user.id, conversation_id: conversationId, message: userMessage }),
             });
-            if (response.ok) {
-                const ans: {response: string, conversation_id: string | number} = await response.json();
-                setNewAns(ans.response);
-                console.log(ans.response);
-            } else {
-                console.error('Error receiving message')
-            }
+            const data = await response.json();
+
+            const assistantMessage : Message = {
+                id: `${Date.now() + 1}`,
+                chat_user_id: user.id,
+                conversation_id: conversationId,
+                author: 'assistant',
+                content: data.response, 
+                timestamp: new Date(),
+            };
+            onNewMessage(assistantMessage); 
         } catch (error) {
-            console.error('Error: ', error);
+            console.error('Error sending message:', error);
+        } finally {
+            setIsSending(false);
         }
-    }
+    };
 
     return (
-        <>
-            <div className="send-message">
-                <form onSubmit={handleMessageSubmit}>
-                    <textarea placeholder="Type your message here" onChange={(e) => setUserMessage(() => e.target.value)}></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-        </>
-    )
-
-}
+        <div className="send-message">
+            <textarea
+                placeholder="Type your message..."
+                value={userMessage}
+                onChange={(e) => setUserMessage(e.target.value)}
+                disabled={isSending}
+            />
+            <button onClick={handleSendMessage} disabled={isSending || !userMessage.trim()}>
+                {isSending ? 'Sending...' : 'Send'}
+            </button>
+        </div>
+    );
+};
 
 export default SendMessage;

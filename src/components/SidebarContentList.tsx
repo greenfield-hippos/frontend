@@ -1,5 +1,5 @@
 import ConversationList from "./ConversationList";
-import { Conversation } from "./ConversationList";
+import { Conversation } from "../types";
 
 interface SidebarContentListProps {
     conversations: Conversation[];

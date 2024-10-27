@@ -1,29 +1,18 @@
-// import { useContext } from "react";
-// import Login from "./Login";
 import Header from "./Header";
 import Content from "./Content";
-// import Login from "./Login";
+import { User } from "../types";
 
-const Chat: React.FC = () => {
-    // From Laurence chat
-    // const isLoggedIn = () => {
-    //     const sessionCookie = document.cookie.split('; ').find(row => row.startsWith('yourCookieName='));
-    //     return sessionCookie ? true : false;
-    // };
-      
-    // // Usage
-    // if (isLoggedIn()) {
-    //   console.log('User is logged in');
-    // } else {
-    //   console.log('User is not logged in');
-    //   return <Login setUserLoggedIn={() => {return false}}/>
-    // }
+interface ChatProps {
+    user: User;
+}
 
+const Chat: React.FC<ChatProps> = ({ user }) => {
+  
     return (
         <>
             <div className="main-container">
                 <Header />
-                <Content />       
+                <Content user={user}/>       
             </div>
         </>
     )
