@@ -51,7 +51,7 @@ const SendMessage: React.FC<SendMessageProps> = ({
                 id: `${Date.now() + 1}`,
                 chat_user_id: user.id,
                 conversation_id: data.conversation_id,
-                author: 'assistant',
+                author: 'ChatGPT',
                 content: data.response, 
                 timestamp: new Date(),
             };
