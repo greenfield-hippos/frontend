@@ -32,12 +32,16 @@ const Signin: React.FC<Props> = ({
                 if (authenticationSuccessful)  {
                     setUserLoggedIn(true)
                     setUser(chatUser);
-                } else {
-                    alert('Incorrect password')
                 }
-            } else {
-                console.error('Error logging in')
-            }
+            } else if (response.status == 500) {
+                alert('System Error logging in')
+            } else if (response.status == 401) {
+                alert('Wrong password')
+            } else if (response.status == 404) {
+                alert('User does not exist')
+            } else if (response.status == 400) {
+                alert('Already logged in')
+            } 
         } catch (error) {
             console.error('Error:', error);
         }

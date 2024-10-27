@@ -1,15 +1,17 @@
 // import { useContext } from "react";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    handleLogOut: Function;
+}
+
+const Header: React.FC<HeaderProps> = ({ handleLogOut }) => {
     // const { logout } = useContext()
 
     return (
         <>
             <header className="app-header">
                 <h1>CodeTutor Chat</h1>
-                <button 
-                    // onClick={}
-                >
+                <button onClick={() => {handleLogOut()}}>
                     Logout
                 </button>
             </header>

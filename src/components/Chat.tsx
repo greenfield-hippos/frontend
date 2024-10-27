@@ -4,14 +4,15 @@ import { User } from "../types";
 
 interface ChatProps {
     user: User;
+    handleLogOut: Function;
 }
 
-const Chat: React.FC<ChatProps> = ({ user }) => {
+const Chat: React.FC<ChatProps> = ({ user, handleLogOut }) => {
   
     return (
         <>
             <div className="main-container">
-                <Header />
+                <Header handleLogOut={handleLogOut}/>
                 <Content user={user}/>       
             </div>
         </>
