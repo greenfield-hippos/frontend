@@ -41,16 +41,18 @@ const Content: React.FC<ContentProps> = ({ user }) => {
         }
     }
     
-    const fetchMessagesForConversation = async (conversationId: string) => {
-        setIsLoading(true);
-        try{
-            const response = await fetch (apiUrl + "users/" + user.id + "/conversations/" + conversationId + "/messages");
-            const data = await response.json();
-            setMessages(data);
-            setIsLoading(false);
-        } catch (error) {
-            console.error("Error fetching messages: ", error);
-            setIsLoading(false);
+    const fetchMessagesForConversation = async (conversationId: string | null) => {
+        if (conversationId) {
+            setIsLoading(true);
+            try{
+                const response = await fetch (apiUrl + "users/" + user.id + "/conversations/" + conversationId + "/messages");
+                const data = await response.json();
+                setMessages(data);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Error fetching messages: ", error);
+                setIsLoading(false);
+            }
         }
     }
 
@@ -63,12 +65,22 @@ const Content: React.FC<ContentProps> = ({ user }) => {
         setSelectedConversation(newConversation);
     };
 
-    const handleSelectConversation = (conversationId: string) => {
-        const selectedConv = conversations.find(conv => conv.id === conversationId);
-        if (selectedConv) {
-            setSelectedConversation(selectedConv);
+    const handleSelectConversation = (conversationId: string | null) => {
+        let selectedConv : Conversation | null | undefined; 
+        if (conversationId) {
+            selectedConv = conversations.find(conv => conv.id === conversationId);
+
+            if (selectedConv === undefined) {
+                selectedConv = null;
+            }
+        } else {
+            selectedConv = null;
+        }
+
+        setSelectedConversation(selectedConv);
+        if (selectedConversation) {
             fetchMessagesForConversation(conversationId);
-        } 
+        }
     }
 
     const handleNewMessage = (newMessage : Message) => {

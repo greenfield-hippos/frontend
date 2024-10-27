@@ -1,9 +1,8 @@
-import Search from "./Search";
 import { Conversation } from "../types";
 
 interface ConversationListProps {
     conversations: Conversation[];
-    onSelectConversation: (id: string) => void;
+    onSelectConversation: (id: string | null) => void;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
@@ -19,7 +18,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
     return (
         <>  
             <div className="conversation-list-tab">
-                <Search />
+                <button type="button" onClick={() => onSelectConversation(null)}>New Conversation</button>
                 {conversations.length === 0 
                     ? (<p>No conversations yet.</p>) 
                     : (conversations.map((conversation) => (
