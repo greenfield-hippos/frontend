@@ -53,13 +53,15 @@ const Content: React.FC<ContentProps> = ({ user }) => {
                 console.error("Error fetching messages: ", error);
                 setIsLoading(false);
             }
+        } else {
+            setMessages([]);
         }
     }
 
     const initializeNewConversation = () => {
         const newConversation: Conversation = {
             id: "",
-            title: "New Conversation",
+            title: "Untitled Conversation",
             updated_at: new Date(),
         };
         setSelectedConversation(newConversation);
