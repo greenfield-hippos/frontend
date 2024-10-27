@@ -26,14 +26,14 @@ const Signup: React.FC<Props> = ({
                 body: JSON.stringify({username: userName, password: password}),
                 });
                 if (response.ok) {
-                console.log('User created')
+                alert('User created successfully. Please proceed to log in');
+                setSigninOrSignup('Signin');
                 } else {
-                console.error('Error creating user')
+                alert('Sorry, that username is already taken. Please try again.');
                 }
             } catch (error) {
                 console.error('Error:', error);
             }
-            setSigninOrSignup('Signin');
         }
     }
 
