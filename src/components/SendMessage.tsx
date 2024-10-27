@@ -5,12 +5,16 @@ interface SendMessageProps {
     conversationId: string | null | undefined;
     onNewMessage: (message: Message) => void;
     user: User;
+    onSelectConversation: Function;
+    fetchConversations: Function;
 }
 
 const SendMessage: React.FC<SendMessageProps> = ({ 
     conversationId,
     onNewMessage,
     user,
+    onSelectConversation,
+    fetchConversations
  }) => {
     const [userMessage, setUserMessage] = useState<string>("");
     const [isSending, setIsSending] = useState<boolean>(false);
@@ -42,16 +46,18 @@ const SendMessage: React.FC<SendMessageProps> = ({
                 body: JSON.stringify({ user_id: user.id, conversation_id: conversationId, message: userMessage }),
             });
             const data = await response.json();
-
+            console.log(data.conversation_id);
             const assistantMessage : Message = {
                 id: `${Date.now() + 1}`,
                 chat_user_id: user.id,
-                conversation_id: conversationId,
-                author: 'assistant',
+                conversation_id: data.conversation_id,
+                author: 'ChatGPT',
                 content: data.response, 
                 timestamp: new Date(),
             };
             onNewMessage(assistantMessage); 
+            await fetchConversations();
+            onSelectConversation(data.conversation_id);
         } catch (error) {
             console.error('Error sending message:', error);
         } finally {

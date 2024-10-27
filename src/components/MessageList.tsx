@@ -8,7 +8,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
     return (
         <div className="message-list">
             {messages.map((message) => (
-                <div key={message.id} className={`message ${message.author}`}>
+                <div key={message.id} className={`message ${message.author === "ChatGPT" ? "ChatGPT" : "user"}`}>
                     <p>{message.content}</p>
                 </div>
             ))}
