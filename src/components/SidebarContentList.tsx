@@ -3,7 +3,7 @@ import { Conversation } from "../types";
 
 interface SidebarContentListProps {
     conversations: Conversation[];
-    onSelectConversation: (id: string) => void;
+    onSelectConversation: (id: string | null) => void;
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = ({

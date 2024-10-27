@@ -8,6 +8,8 @@ interface ChatWindowProps {
     messages: Message[];
     onUpdateMessage: (message: Message) => void;
     user: User;
+    onSelectConversation: Function;
+    fetchConversations: Function;
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -15,6 +17,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     messages,
     onUpdateMessage,
     user,
+    onSelectConversation,
+    fetchConversations
 }) => {
 
     return (
@@ -26,6 +30,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     conversationId={conversation?.id || null}
                     onNewMessage={onUpdateMessage}
                     user={user}
+                    onSelectConversation={onSelectConversation}
+                    fetchConversations={fetchConversations}
                 />
             </div>
         </>

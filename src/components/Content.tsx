@@ -29,7 +29,7 @@ const Content: React.FC<ContentProps> = ({ user }) => {
             console.log(data);
             setConversations(data);
             setIsLoading(false);
-            if (data.length > 0) {
+            if (conversations.length > 0) {
                 // const latestConversation = conversations[0];
                 // setSelectedConversation(latestConversation);
                 // fetchMessagesForConversation(latestConversation.id)
@@ -104,6 +104,8 @@ const Content: React.FC<ContentProps> = ({ user }) => {
                         conversation={selectedConversation}
                         messages={messages}
                         onUpdateMessage={handleNewMessage}
+                        onSelectConversation={handleSelectConversation}
+                        fetchConversations={fetchConversations}
                     />
                 )}
             </div>
