@@ -1,4 +1,5 @@
 import { Conversation } from "../types";
+import moment from "moment";
 
 interface ConversationListProps {
     conversations: Conversation[];
@@ -28,7 +29,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
                             onClick={() => onSelectConversation(conversation.id)}
                         >
                         <h3>{conversation.title || "Untitled Conversation"}</h3>
-                        <p className="conversation-time">{conversation.updated_at.toLocaleString()}</p>
+                        <p className="conversation-time">{moment(conversation.updated_at).fromNow()}</p>
                     </div>
                     ))
                 )}
