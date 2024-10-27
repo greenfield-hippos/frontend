@@ -86,7 +86,7 @@ const Content: React.FC<ContentProps> = ({ user }) => {
                     onSelectConversation={handleSelectConversation}
                 />
 
-                {selectedConversation && (
+                {(
                     <ChatWindow
                         user={user}
                         conversation={selectedConversation}
