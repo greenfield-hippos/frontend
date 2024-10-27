@@ -1,4 +1,4 @@
-import { Message } from "./ChatWindow";
+import { Message } from "../types";
 
 interface MessageListProps {
     messages: Message[];
