@@ -1,12 +1,8 @@
-// import { useContext } from "react";
-
 interface HeaderProps {
     handleLogOut: Function;
 }
 
 const Header: React.FC<HeaderProps> = ({ handleLogOut }) => {
-    // const { logout } = useContext()
-
     return (
         <>
             <header className="app-header">
