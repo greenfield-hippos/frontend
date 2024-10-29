@@ -16,7 +16,9 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     question: [],
     answer: [],
   });
-  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(null);
+  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favoriteView, setFavoriteView] = useState<boolean>(false);
 
@@ -137,6 +139,9 @@ const Content: React.FC<ContentProps> = ({ user }) => {
           setSelectedFavorite={setSelectedFavorite}
           favoriteView={favoriteView}
           favorites={favorites}
+          setViewToCurrent={() => {
+            setFavoriteView(false);
+          }}
         />
 
         {
