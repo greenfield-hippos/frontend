@@ -165,7 +165,15 @@ div.ChatGPT {
   }
 }
 
-button.star {
+.star {
   align-self: flex-end;
-  margin-bottom: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.star:active {
+  align-self: flex-end;
+  border: none;
+  outline: none;
 }
