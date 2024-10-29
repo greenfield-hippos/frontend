@@ -8,8 +8,9 @@ interface SidebarContentListProps {
   onSelectConversation: (id: string | null) => void;
   handleFavoriteMessage: (id: number | null) => void;
   fetchFavoriteData: () => void;
-  favorites: Favorites
-  favoriteView : boolean
+  setViewToCurrent: () => void;
+  favorites: Favorites;
+  favoriteView: boolean;
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = ({
@@ -17,32 +18,47 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
   onSelectConversation,
   handleFavoriteMessage,
   fetchFavoriteData,
+  setViewToCurrent,
   favorites,
-  favoriteView
+  favoriteView,
 }) => {
-
   useEffect(() => {
-    console.log(favorites)
-  })
+    console.log(favorites);
+  });
 
   return (
     <>
-    {favoriteView === false ?
-      <div className="sidebar-content">
-        <ConversationList
-          conversations={conversations}
-          onSelectConversation={onSelectConversation}
-          fetchFavoriteData={fetchFavoriteData}
-        />
-      </div>
-    :
-    <div className="sidebar-content">
-      <FavoriteList 
-        favorites={favorites}
-        handleFavoriteMessage={handleFavoriteMessage}
-      />
-    </div>
-    }
+      {favoriteView === false ? (
+        <div className="sidebar-content">
+          <button
+            type="button"
+            onClick={() => {
+              fetchFavoriteData();
+            }}
+          >
+            Favorite Messages
+          </button>
+          <ConversationList
+            conversations={conversations}
+            onSelectConversation={onSelectConversation}
+          />
+        </div>
+      ) : (
+        <div className="sidebar-content">
+          <button
+            type="button"
+            onClick={() => {
+              setViewToCurrent();
+            }}
+          >
+            Current Messages
+          </button>
+          <FavoriteList
+            favorites={favorites}
+            handleFavoriteMessage={handleFavoriteMessage}
+          />
+        </div>
+      )}
     </>
   );
 };

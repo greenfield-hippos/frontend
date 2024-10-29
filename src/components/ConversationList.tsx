@@ -6,15 +6,12 @@ const apiUrl = import.meta.env.VITE_API_URL;
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (id: string | null) => void;
-  fetchFavoriteData: () => void;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   conversations,
   onSelectConversation,
-  fetchFavoriteData,
 }) => {
-  const [currentView, setCurrentView] = useState<string>("Current");
   return (
     <>
       <div className="conversation-list-tab">
@@ -26,27 +23,6 @@ const ConversationList: React.FC<ConversationListProps> = ({
         >
           + New Conversation
         </button>
-
-        {currentView === "Current" ? (
-          <button
-            type="button"
-            onClick={() => {
-              setCurrentView("Favorite");
-              fetchFavoriteData();
-            }}
-          >
-            Current Messages
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => {
-              setCurrentView("Current");
-            }}
-          >
-            Favorite Messages
-          </button>
-        )}
 
         {conversations.length === 0 ? (
           <p>No conversations yet.</p>

@@ -143,6 +143,9 @@ const Content: React.FC<ContentProps> = ({ user }) => {
           setSelectedFavorite={setSelectedFavorite}
           favoriteView={favoriteView}
           favorites={favorites}
+          setViewToCurrent={() => {
+            setFavoriteView(false);
+          }}
         />
 
         {
