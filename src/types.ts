@@ -14,6 +14,11 @@ export interface Conversation {
     updated_at: Date ;
 }
 
+export interface Favorites {
+    question: Array<Message>;
+    answer: Array<Message>;
+}
+
 export interface User {
     id: string | null;
     username: string | null;
