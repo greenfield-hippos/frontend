@@ -78,7 +78,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
 
           {message.author === "ChatGPT" && (
             <button className="star" onClick={() => handleFav(message.id)}>
-              {favMessages.has(message.id) ? "☆" : "★"}
+              {favMessages.has(message.id) ? "★" : "☆"}
             </button>
           )}
         </div>
