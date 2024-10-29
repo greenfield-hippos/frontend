@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import SidebarContentList from "./SidebarContentList";
 import ChatWindow from "./ChatWindow";
-import { Conversation, User } from "../types";
-import { Message } from "../types";
+import { Conversation, User, Message, Favorites } from "../types";
 
 interface ContentProps {
   user: User;
 }
 
 const Content: React.FC<ContentProps> = ({ user }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] =
-    useState<Conversation | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [conversations, setConversations] = useState<Conversation[]>([]);
+    const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+    const [favorites, setFavorites] = useState<Favorites>({question: [], answer: []});
+    const [selectedFavorite, setSelectedFavorite] = useState<Favorites[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
