@@ -32,7 +32,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
             type="button"
             onClick={() => {
               setCurrentView("Favorite");
-              fetchFavoriteData;
+              fetchFavoriteData();
             }}
           >
             Current Messages

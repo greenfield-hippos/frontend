@@ -1,6 +1,7 @@
 import MessageList from "./MessageList";
 import SendMessage from "./SendMessage";
-import { Message, User } from "../types";
+import FavMessageDisplay from "./FavMessageDisplay";
+import { Favorites, Message, User } from "../types";
 import { Conversation } from "../types";
  
 interface ChatWindowProps {
@@ -10,6 +11,9 @@ interface ChatWindowProps {
     user: User;
     onSelectConversation: Function;
     fetchConversations: Function;
+    favorites : Favorites
+    selectedFavorite: Message | null
+    favoriteView : boolean
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -18,22 +22,35 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     onUpdateMessage,
     user,
     onSelectConversation,
-    fetchConversations
+    fetchConversations,
+    favorites,
+    favoriteView,
+    selectedFavorite
 }) => {
 
     return (
         <>
-            <div className="chat-window">
-                <h2>{conversation?.title || "Untitled Conversation"}</h2>
-                <MessageList messages={messages}/>
-                <SendMessage 
-                    conversationId={conversation?.id || null}
-                    onNewMessage={onUpdateMessage}
-                    user={user}
-                    onSelectConversation={onSelectConversation}
-                    fetchConversations={fetchConversations}
-                />
-            </div>
+            {favoriteView === false ?
+                <div className="chat-window">
+                    <h2>{conversation?.title || "Untitled Conversation"}</h2>
+                    <MessageList messages={messages}/>
+                    <SendMessage 
+                        conversationId={conversation?.id || null}
+                        onNewMessage={onUpdateMessage}
+                        user={user}
+                        onSelectConversation={onSelectConversation}
+                        fetchConversations={fetchConversations}
+                    />
+                </div>
+                :
+                <div className="sidebar-content">
+                    <FavMessageDisplay 
+                        messages={messages}
+                        favorites={favorites}
+                        selectedFavorite={selectedFavorite}
+                    />
+                </div>
+            }
         </>
     )
 

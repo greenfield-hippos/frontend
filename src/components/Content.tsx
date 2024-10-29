@@ -16,7 +16,7 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     question: [],
     answer: [],
   });
-  const [selectedFavorite, setSelectedFavorite] = useState<Favorites[]>([]);
+  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favoriteView, setFavoriteView] = useState<boolean>(false);
 
@@ -35,7 +35,7 @@ const Content: React.FC<ContentProps> = ({ user }) => {
       console.log(data);
       setFavorites(data);
 
-      //   if (favorites.length > 0) {
+      //   if (favorites.answer.length > 0) {
       //     // do nothing
       //   } else {
       //     initializeNewConversation();
@@ -43,6 +43,11 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     } catch (error) {
       console.error("Error fetching conversations: ", error);
     }
+  };
+
+  const handleFavoriteMessage = (questionIndex: number) => {
+    let selectedAnswer = favorites.answer[questionIndex];
+    setSelectedFavorite(selectedAnswer);
   };
 
   const fetchConversations = async () => {
@@ -127,6 +132,11 @@ const Content: React.FC<ContentProps> = ({ user }) => {
           conversations={conversations}
           onSelectConversation={handleSelectConversation}
           fetchFavoriteData={fetchFavoriteData}
+          handleFavoriteMessage={handleFavoriteMessage}
+          selectedFavorite={selectedFavorite}
+          setSelectedFavorite={setSelectedFavorite}
+          favoriteView={favoriteView}
+          favorites={favorites}
         />
 
         {
@@ -137,6 +147,9 @@ const Content: React.FC<ContentProps> = ({ user }) => {
             onUpdateMessage={handleNewMessage}
             onSelectConversation={handleSelectConversation}
             fetchConversations={fetchConversations}
+            selectedFavorite={selectedFavorite}
+            favorites={favorites}
+            favoriteView={favoriteView}
           />
         }
       </div>
