@@ -16,7 +16,9 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     question: [],
     answer: [],
   });
-  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(null);
+  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favoriteView, setFavoriteView] = useState<boolean>(false);
 
@@ -45,9 +47,13 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     }
   };
 
-  const handleFavoriteMessage = (questionIndex: number) => {
-    let selectedAnswer = favorites.answer[questionIndex];
-    setSelectedFavorite(selectedAnswer);
+  const handleFavoriteMessage = (questionIndex: number | null) => {
+    if (questionIndex === null) {
+      setSelectedFavorite(null);
+    } else {
+      let selectedAnswer = favorites.answer[questionIndex];
+      setSelectedFavorite(selectedAnswer);
+    }
   };
 
   const fetchConversations = async () => {
