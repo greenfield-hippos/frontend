@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Favorites } from "../types";
 import moment from "moment";
 
@@ -7,10 +8,15 @@ interface FavoriteListProps {
 }
 
 const FavoriteList: React.FC<FavoriteListProps> = ({ favorites, handleFavoriteMessage }) => {
+
+    useEffect(()=> {
+        console.log(favorites)
+    })
+
     return (
         <>
             <div>
-                {favorites.question.length === 0
+                {favorites === undefined
                     ? (<p>No favorite messages.</p>)
                     : ((favorites.question).map((question) => (
                         <div 

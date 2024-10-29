@@ -1,4 +1,5 @@
 import { Conversation } from "../types";
+import { useEffect, useState } from "react";
 import moment from "moment";
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -13,15 +14,40 @@ const ConversationList: React.FC<ConversationListProps> = ({
   onSelectConversation,
   fetchFavoriteData,
 }) => {
+  const [currentView, setCurrentView] = useState<string>("Current");
   return (
     <>
       <div className="conversation-list-tab">
-        <button type="button" onClick={() => onSelectConversation(null)}>
-          New Conversation
+        <button
+          type="button"
+          onClick={() => {
+            onSelectConversation(null);
+          }}
+        >
+          + New Conversation
         </button>
-        <button type="button" onClick={fetchFavoriteData}>
-          Favorite messages
-        </button>
+
+        {currentView === "Current" ? (
+          <button
+            type="button"
+            onClick={() => {
+              setCurrentView("Favorite");
+              fetchFavoriteData();
+            }}
+          >
+            Current Messages
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              setCurrentView("Current");
+            }}
+          >
+            Favorite Messages
+          </button>
+        )}
+
         {conversations.length === 0 ? (
           <p>No conversations yet.</p>
         ) : (

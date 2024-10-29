@@ -4,20 +4,27 @@ import { Message, Favorites } from "../types";
 interface FavMessageDisplayProps {
     messages: Message[];
     favorites : Favorites;
-    selectedFavorite : Message;
+    selectedFavorite : Message | null;
 }
 
 const FavMessageDisplay: React.FC<FavMessageDisplayProps> = ({ selectedFavorite }) => {
 
     return (
-        <div className="message-list">
+        selectedFavorite === null ? (
+            <div className="message-list">
+                No message selected.
+            </div>
+            ) :
+            (
+            <div className="message-list">
                 <div 
                     key={selectedFavorite.id} 
                     className="message ChatGPT"
                 >
                     <p>{selectedFavorite.content}</p>
                 </div>
-        </div>
+            </div>
+            )
     );
 };
 

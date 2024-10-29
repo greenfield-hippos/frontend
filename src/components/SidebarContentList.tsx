@@ -1,6 +1,7 @@
 import ConversationList from "./ConversationList";
 import { Conversation, Favorites } from "../types";
 import FavoriteList from "./FavoriteList";
+import { useEffect } from "react";
 
 interface SidebarContentListProps {
   conversations: Conversation[];
@@ -8,6 +9,7 @@ interface SidebarContentListProps {
   handleFavoriteMessage: (id: number | null) => void;
   fetchFavoriteData: () => void;
   favorites: Favorites
+  favoriteView : boolean
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = ({
@@ -15,11 +17,17 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
   onSelectConversation,
   handleFavoriteMessage,
   fetchFavoriteData,
-  favorites
+  favorites,
+  favoriteView
 }) => {
+
+  useEffect(() => {
+    console.log(favorites)
+  })
+
   return (
     <>
-    {view === false ?
+    {favoriteView === false ?
       <div className="sidebar-content">
         <ConversationList
           conversations={conversations}

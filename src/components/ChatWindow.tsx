@@ -12,7 +12,8 @@ interface ChatWindowProps {
     onSelectConversation: Function;
     fetchConversations: Function;
     favorites : Favorites
-    selectedFavorite: Message
+    selectedFavorite: Message | null
+    favoriteView : boolean
 }
 
 const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -23,12 +24,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     onSelectConversation,
     fetchConversations,
     favorites,
+    favoriteView,
     selectedFavorite
 }) => {
 
     return (
         <>
-            {view === false ?
+            {favoriteView === false ?
                 <div className="chat-window">
                     <h2>{conversation?.title || "Untitled Conversation"}</h2>
                     <MessageList messages={messages}/>

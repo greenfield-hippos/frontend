@@ -8,12 +8,17 @@ interface ContentProps {
 }
 
 const Content: React.FC<ContentProps> = ({ user }) => {
-    const [messages, setMessages] = useState<Message[]>([]);
-    const [conversations, setConversations] = useState<Conversation[]>([]);
-    const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
-    const [favorites, setFavorites] = useState<Favorites>({question: [], answer: []});
-    const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [selectedConversation, setSelectedConversation] =
+    useState<Conversation | null>(null);
+  const [favorites, setFavorites] = useState<Favorites>({
+    question: [],
+    answer: [],
+  });
+  const [selectedFavorite, setSelectedFavorite] = useState<Message | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [favoriteView, setFavoriteView] = useState<boolean>(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -23,17 +28,18 @@ const Content: React.FC<ContentProps> = ({ user }) => {
   }, []);
 
   const fetchFavoriteData = async () => {
+    setFavoriteView(true);
     try {
       const response = await fetch(apiUrl + "users/" + user.id + "/favorites");
       const data = await response.json();
       console.log(data);
       setFavorites(data);
 
-      if (favorites.answer.length > 0) {
-        // do nothing
-      } else {
-        initializeNewConversation();
-      }
+      //   if (favorites.answer.length > 0) {
+      //     // do nothing
+      //   } else {
+      //     initializeNewConversation();
+      //   }
     } catch (error) {
       console.error("Error fetching conversations: ", error);
     }
@@ -129,6 +135,8 @@ const Content: React.FC<ContentProps> = ({ user }) => {
           handleFavoriteMessage={handleFavoriteMessage}
           selectedFavorite={selectedFavorite}
           setSelectedFavorite={setSelectedFavorite}
+          favoriteView={favoriteView}
+          favorites={favorites}
         />
 
         {
@@ -140,6 +148,8 @@ const Content: React.FC<ContentProps> = ({ user }) => {
             onSelectConversation={handleSelectConversation}
             fetchConversations={fetchConversations}
             selectedFavorite={selectedFavorite}
+            favorites={favorites}
+            favoriteView={favoriteView}
           />
         }
       </div>
