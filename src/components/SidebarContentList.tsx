@@ -1,7 +1,6 @@
 import ConversationList from "./ConversationList";
 import { Conversation, Favorites, Message, User } from "../types";
 import FavoriteList from "./FavoriteList";
-import { useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 interface SidebarContentListProps {
