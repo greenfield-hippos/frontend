@@ -1,15 +1,33 @@
-import { Conversation } from "../types";
+import { Conversation, User } from "../types";
 import moment from "moment";
 
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (id: string | null) => void;
+  fetchConversations: Function;
+  user: User;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
+  user,
   conversations,
   onSelectConversation,
+  fetchConversations,
 }) => {
+  async function deleteConversation(cid: string) {
+    const deleteUrl =
+      apiUrl + "users/" + user.id + "/conversations/" + cid + "/";
+    await fetch(deleteUrl, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    await fetchConversations();
+  }
+
   return (
     <>
       <div className="conversation-list-tab">
@@ -32,9 +50,20 @@ const ConversationList: React.FC<ConversationListProps> = ({
               onClick={() => onSelectConversation(conversation.id)}
             >
               <h3>{conversation.title || "Untitled Conversation"}</h3>
-              <p className="conversation-time">
-                {moment(conversation.updated_at).fromNow()}
-              </p>
+              <div className="time-bar">
+                <p className="conversation-time">
+                  {moment(conversation.updated_at).fromNow()}
+                </p>
+                <div
+                  className="trash"
+                  onClick={() => {
+                    onSelectConversation(null);
+                    deleteConversation(conversation.id);
+                  }}
+                >
+                  🗑️
+                </div>
+              </div>
             </div>
           ))
         )}
