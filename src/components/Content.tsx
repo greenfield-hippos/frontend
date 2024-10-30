@@ -36,12 +36,6 @@ const Content: React.FC<ContentProps> = ({ user }) => {
       const data = await response.json();
       console.log(data);
       setFavorites(data);
-
-      //   if (favorites.answer.length > 0) {
-      //     // do nothing
-      //   } else {
-      //     initializeNewConversation();
-      //   }
     } catch (error) {
       console.error("Error fetching conversations: ", error);
     }

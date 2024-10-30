@@ -1,7 +1,5 @@
 import { Conversation } from "../types";
-import { useEffect, useState } from "react";
 import moment from "moment";
-const apiUrl = import.meta.env.VITE_API_URL;
 
 interface ConversationListProps {
   conversations: Conversation[];
