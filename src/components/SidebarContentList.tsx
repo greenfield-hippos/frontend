@@ -37,19 +37,12 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
     <>
       {favoriteView === false ? (
         <div className="sidebar-content">
-          <button
-            type="button"
-            onClick={() => {
-              fetchFavoriteData();
-            }}
-          >
-            Favorite Messages
-          </button>
           <ConversationList
             conversations={conversations}
             onSelectConversation={onSelectConversation}
             fetchConversations={fetchConversations}
             user={user}
+            fetchFavoriteData={fetchFavoriteData}
           />
         </div>
       ) : (

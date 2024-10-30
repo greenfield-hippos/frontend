@@ -7,6 +7,7 @@ interface ConversationListProps {
   onSelectConversation: (id: string | null) => void;
   fetchConversations: Function;
   user: User;
+  fetchFavoriteData: () => void;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
@@ -14,6 +15,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
   conversations,
   onSelectConversation,
   fetchConversations,
+  fetchFavoriteData,
 }) => {
   async function deleteConversation(cid: string) {
     const deleteUrl =
@@ -32,15 +34,24 @@ const ConversationList: React.FC<ConversationListProps> = ({
   return (
     <>
       <div className="conversation-list-tab">
-        <button
-          type="button"
-          onClick={() => {
-            onSelectConversation(null);
-          }}
-        >
-          + New Conversation
-        </button>
-
+        <div className="adjust-button">
+          <button
+            type="button"
+            onClick={() => {
+              fetchFavoriteData();
+            }}
+          >
+            Favorite Messages
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onSelectConversation(null);
+            }}
+          >
+            + New Conversation
+          </button>
+        </div>
         {conversations.length === 0 ? (
           <p>No conversations yet.</p>
         ) : (
