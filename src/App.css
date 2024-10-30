@@ -22,7 +22,7 @@ div.conversation-item {
   width: 30vw;
   padding-left: 4px;
   border-radius: 10px;
-  background-color: #cef9f2;
+  background-color: #c4d7f2;
 }
 
 .time-bar {
@@ -144,7 +144,7 @@ div.user {
 
 div.ChatGPT {
   align-self: flex-start;
-  background-color: #cef9f2;
+  background-color: #c4d7f2;
   text-align: left;
   padding-left: 8px;
 }
@@ -195,6 +195,8 @@ h1 {
   background-color: transparent;
   border: none;
   outline: none;
+  color: #5b616a;
+  font-size: large;
 }
 
 .star:active {
