@@ -129,6 +129,10 @@ const Content: React.FC<ContentProps> = ({ user }) => {
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
+  const setViewToCurrent = () => {
+    setFavoriteView(false);
+  };
+
   return (
     <>
       <div className="content-container">
@@ -143,9 +147,7 @@ const Content: React.FC<ContentProps> = ({ user }) => {
           setSelectedFavorite={setSelectedFavorite}
           favoriteView={favoriteView}
           favorites={favorites}
-          setViewToCurrent={() => {
-            setFavoriteView(false);
-          }}
+          setViewToCurrent={setViewToCurrent}
         />
 
         {
