@@ -4,24 +4,35 @@ import moment from "moment";
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (id: string | null) => void;
+  fetchFavoriteData: () => void;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   conversations,
   onSelectConversation,
+  fetchFavoriteData,
 }) => {
   return (
     <>
       <div className="conversation-list-tab">
-        <button
-          type="button"
-          onClick={() => {
-            onSelectConversation(null);
-          }}
-        >
-          + New Conversation
-        </button>
-
+        <div className="adjust-button">
+          <button
+            type="button"
+            onClick={() => {
+              fetchFavoriteData();
+            }}
+          >
+            Favorite Messages
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onSelectConversation(null);
+            }}
+          >
+            + New Conversation
+          </button>
+        </div>
         {conversations.length === 0 ? (
           <p>No conversations yet.</p>
         ) : (
