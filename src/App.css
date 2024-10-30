@@ -25,6 +25,18 @@ div.conversation-item {
   background-color: #cef9f2;
 }
 
+.time-bar {
+  display: flex;
+}
+
+.trash {
+  align-items: center;
+  width: fit-content;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
 div.conversation-item:hover {
   background-color: #dfeff5;
 }
