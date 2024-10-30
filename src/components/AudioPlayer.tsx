@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
