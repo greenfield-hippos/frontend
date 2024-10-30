@@ -45,12 +45,7 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
         </div>
       ) : (
         <div className="sidebar-content">
-          <button
-            type="button"
-            onClick={() => {
-              setViewToCurrent();
-            }}
-          >
+          <button type="button" onClick={setViewToCurrent}>
             Current Messages
           </button>
           <FavoriteList
