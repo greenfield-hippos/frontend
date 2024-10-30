@@ -29,10 +29,6 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
   favorites,
   favoriteView,
 }) => {
-  useEffect(() => {
-    console.log(favorites);
-  });
-
   return (
     <>
       {favoriteView === false ? (
