@@ -1,6 +1,8 @@
 import { Conversation, User } from "../types";
 import moment from "moment";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (id: string | null) => void;

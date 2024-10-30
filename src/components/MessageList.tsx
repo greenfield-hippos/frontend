@@ -1,5 +1,6 @@
 import { Message } from "../types";
 import { useRef, useEffect, useState } from "react";
+import SimpleSpeech from "./SimpleSpeech";
 const apiUrl: string = import.meta.env.VITE_API_URL;
 
 interface MessageListProps {
@@ -77,9 +78,13 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
           <p>{message.content}</p>
 
           {message.author === "ChatGPT" && (
-            <button className="star" onClick={() => handleFav(message.id)}>
-              {favMessages.has(message.id) ? "★" : "☆"}
-            </button>
+            <>
+              <SimpleSpeech textToSpeak={message.content} />
+
+              <button className="star" onClick={() => handleFav(message.id)}>
+                {favMessages.has(message.id) ? "★" : "☆"}
+              </button>
+            </>
           )}
         </div>
       ))}
