@@ -1,5 +1,5 @@
 import ConversationList from "./ConversationList";
-import { Conversation, Favorites } from "../types";
+import { Conversation, Favorites, User } from "../types";
 import FavoriteList from "./FavoriteList";
 import { useEffect } from "react";
 
@@ -9,16 +9,20 @@ interface SidebarContentListProps {
   handleFavoriteMessage: (id: number | null) => void;
   fetchFavoriteData: () => void;
   setViewToCurrent: () => void;
+  fetchConversations: Function;
   favorites: Favorites;
   favoriteView: boolean;
+  user: User;
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = ({
+  user,
   conversations,
   onSelectConversation,
   handleFavoriteMessage,
   fetchFavoriteData,
   setViewToCurrent,
+  fetchConversations,
   favorites,
   favoriteView,
 }) => {
@@ -41,6 +45,8 @@ const SidebarContentList: React.FC<SidebarContentListProps> = ({
           <ConversationList
             conversations={conversations}
             onSelectConversation={onSelectConversation}
+            fetchConversations={fetchConversations}
+            user={user}
           />
         </div>
       ) : (
