@@ -1,11 +1,10 @@
 import { Conversation, User } from "../types";
 import moment from "moment";
-const apiUrl = import.meta.env.VITE_API_URL;
 
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (id: string | null) => void;
-  fetchConversations: Function
+  fetchConversations: Function;
   user: User;
 }
 
@@ -13,11 +12,11 @@ const ConversationList: React.FC<ConversationListProps> = ({
   user,
   conversations,
   onSelectConversation,
-  fetchConversations
+  fetchConversations,
 }) => {
-
   async function deleteConversation(cid: string) {
-    const deleteUrl = apiUrl + "users/" + user.id + "/conversations/" + cid + "/";
+    const deleteUrl =
+      apiUrl + "users/" + user.id + "/conversations/" + cid + "/";
     await fetch(deleteUrl, {
       method: "DELETE",
       credentials: "include",
@@ -26,7 +25,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
       },
     });
 
-    await fetchConversations()
+    await fetchConversations();
   }
 
   return (
@@ -55,7 +54,13 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 <p className="conversation-time">
                   {moment(conversation.updated_at).fromNow()}
                 </p>
-                <div className="trash" onClick={() => {onSelectConversation(null); deleteConversation(conversation.id);}}>
+                <div
+                  className="trash"
+                  onClick={() => {
+                    onSelectConversation(null);
+                    deleteConversation(conversation.id);
+                  }}
+                >
                   🗑️
                 </div>
               </div>
