@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 interface SidebarContentListProps {
   conversations: Conversation[];
-  onSelectConversation: (id: string | null) => void;
+  onSelectConversation: (conversationId: string | null) => void;
   handleFavoriteMessage: (id: number | null) => void;
   fetchFavoriteData: () => void;
   setViewToCurrent: () => void;
