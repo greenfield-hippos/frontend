@@ -1,7 +1,8 @@
 import ConversationList from "./ConversationList";
-import { Conversation, Favorites } from "../types";
+import { Conversation, Favorites, Message } from "../types";
 import FavoriteList from "./FavoriteList";
 import { useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface SidebarContentListProps {
   conversations: Conversation[];
@@ -11,6 +12,8 @@ interface SidebarContentListProps {
   setViewToCurrent: () => void;
   favorites: Favorites;
   favoriteView: boolean;
+  setSelectedFavorite: Dispatch<SetStateAction<Message | null>>;
+  selectedFavorite: Message | null;
 }
 
 const SidebarContentList: React.FC<SidebarContentListProps> = ({
